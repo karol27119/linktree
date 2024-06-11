@@ -1,21 +1,50 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { StyleSheet, Image, Platform } from 'react-native';
 
+import { useCallback } from 'react';
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function TabTwoScreen() {
+  const [fontsLoaded, fontError] = useFonts({
+    'fonte1': require('../../assets/fonts/BebasNeue-Regular.otf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={<Ionicons size={310} name="code-slash" style={styles.headerImage} />}>
+      headerBackgroundColor={{ light: '#F0F1F0', dark: '#F0F1F0' }}
+      headerImage={
+        <Image
+          source={require('@/assets/images/logo.png')}
+          style={styles.reactLogo}
+        />
+      }>
+        <LinearGradient 
+        colors={['#F0F1F0','#AD795B']}
+        style={styles.background}
+        end={{x: 0.6 , y: 1.5}}
+        />
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">@karolpelegrini</ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
+      <ThemedText style={styles.text}>Estudante | Técnico em Informática | Ajudante em Logistíca</ThemedText>
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
@@ -90,7 +119,7 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#808080',
+    color: '#F0F1F0',
     bottom: -90,
     left: -35,
     position: 'absolute',
@@ -99,4 +128,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
+  reactLogo: {
+    height: 230,
+    width: 380,
+    bottom: 0,
+    left: 5,
+    position: 'absolute',
+  },
+  background:{
+    position:"absolute",
+    left:0,
+    right:0,
+    top:0,
+    height:600,
+  },
+  text:{
+    fontFamily:"fonte1",
+    color:"#48392E",
+    fontSize:16,
+  }
 });
