@@ -1,4 +1,3 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { StyleSheet, Image, Platform, Linking, TouchableOpacity, Text } from 'react-native';
 
 import { useCallback } from 'react';
@@ -10,6 +9,10 @@ import { ThemedView } from '@/components/ThemedView';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+
+import { AntDesign } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -36,6 +39,36 @@ export default function TabTwoScreen() {
       console.error("Erro ao abrir o link do Instagram:", error);
     }
   };
+
+  const GithubLink = async () => {
+    const githubUrl = "https://github.com/karol27119";
+    try {
+      await Linking.openURL(githubUrl);
+    } catch (error) {
+      console.error("Erro ao abrir o link do GitHub:", error);
+    }
+  };
+
+  const WhatsappMessage = async () => {
+    const phoneNumber = "18997634714";
+    const message = "Olá Karoline, tudo bem?";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    try {
+      await Linking.openURL(whatsappUrl);
+    } catch (error) {
+      console.error("Erro ao abrir o link do WhatsApp:", error);
+    }
+  };
+
+  const LinkedInLink = async () => {
+    const linkedInUrl = "linkedin://profile/karoline-ramos-49875b279";
+    try {
+      await Linking.openURL(linkedInUrl);
+    } catch (error) {
+      console.error("Erro ao abrir o link do LinkedIn:", error);
+    }
+  };
+  
   
   return (
     <ParallaxScrollView
@@ -55,7 +88,20 @@ export default function TabTwoScreen() {
       </ThemedView>
       <ThemedText style={styles.text}>Estudante | Técnico em Informática | Ajudante em Logistíca</ThemedText>
       <TouchableOpacity style={styles.botao} onPress={InstagramLink}>
+      <AntDesign name="instagram" size={24} color="black" />
         <Text>Ir para o Instagram</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.botao} onPress={GithubLink}>
+      <Feather name="github" size={24} color="black" />
+        <Text>Ir para o GitHub</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.botao} onPress={WhatsappMessage}>
+      <FontAwesome name="whatsapp" size={24} color="black" />
+        <Text>Ir para o WhatsApp</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.botao} onPress={LinkedInLink}>
+      <Feather name="linkedin" size={24} color="black" />
+        <Text>Ir para o Linkedin</Text>
       </TouchableOpacity>
     </ParallaxScrollView>
   );
