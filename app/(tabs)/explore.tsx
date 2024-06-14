@@ -1,4 +1,4 @@
-import { StyleSheet, Image, Platform, Linking, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, Image, Platform, Linking, TouchableOpacity, Text, ImageBackground } from 'react-native';
 
 import { useCallback } from 'react';
 import { Collapsible } from '@/components/Collapsible';
@@ -10,6 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
+import { EvilIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -19,6 +20,7 @@ SplashScreen.preventAutoHideAsync();
 export default function TabTwoScreen() {
   const [fontsLoaded, fontError] = useFonts({
     'fonte1': require('../../assets/fonts/BebasNeue-Regular.otf'),
+    'fonte2': require('../../assets/fonts/Elegante.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -84,24 +86,29 @@ export default function TabTwoScreen() {
         style={styles.background}
         end={{x: 0.6 , y: 1.5}}
         />
+      <ThemedText style={styles.nome}>Karoline Ramos</ThemedText>
+      <ThemedText style={styles.text}>Estudante | Técnico em Informática | Ajudante em Logistíca | Auxiliar em Agropécuaria</ThemedText>
       <ThemedView style={styles.titleContainer}>
       </ThemedView>
-      <ThemedText style={styles.text}>Estudante | Técnico em Informática | Ajudante em Logistíca</ThemedText>
       <TouchableOpacity style={styles.botao} onPress={InstagramLink}>
-      <AntDesign name="instagram" size={24} color="black" />
-        <Text>Ir para o Instagram</Text>
+      <AntDesign name="instagram" size={24} color="#48392E" />
+      <Text>  </Text>
+        <Text style={styles.textbutton}>Instagram</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.botao} onPress={GithubLink}>
-      <Feather name="github" size={24} color="black" />
-        <Text>Ir para o GitHub</Text>
+      <Feather name="github" size={24} color="#48392E" />
+      <Text> </Text>
+        <Text style={styles.textbutton}>GitHub</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.botao} onPress={WhatsappMessage}>
-      <FontAwesome name="whatsapp" size={24} color="black" />
-        <Text>Ir para o WhatsApp</Text>
+      <FontAwesome name="whatsapp" size={24} color="#48392E" />
+      <Text> </Text>
+        <Text style={styles.textbutton}>WhatsApp</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.botao} onPress={LinkedInLink}>
-      <Feather name="linkedin" size={24} color="black" />
-        <Text>Ir para o Linkedin</Text>
+      <EvilIcons name="sc-linkedin" size={30} color="#48392E" />
+      <Text></Text>
+        <Text style={styles.textbutton}>Linkedin</Text>
       </TouchableOpacity>
     </ParallaxScrollView>
   );
@@ -121,7 +128,7 @@ const styles = StyleSheet.create({
   reactLogo: {
     height: 250,
     width: 380,
-    bottom: 2,
+    bottom: 5,
     left: 5,
     position: 'absolute',
   },
@@ -135,17 +142,31 @@ const styles = StyleSheet.create({
   text:{
     fontFamily:"fonte1",
     color:"#48392E",
-    fontSize:16,
+    fontSize:20,
+    textAlign:"center",
   },
   botao: {
     flexDirection: "row",
     backgroundColor: "#ffff",
-    borderColor: "#ffff",
+    borderColor: "#48392E",
     height: 50,
     width: 250,
     alignItems: "center",
     justifyContent: "center",
     alignSelf:"center",
     borderRadius: 100,
+    borderWidth:1,
+  },
+  nome:{
+    textAlign:"center",
+    color:"#48392E",
+    fontFamily:"fonte2",
+    fontSize:50,
+    paddingTop:25,
+  },
+  textbutton:{
+    fontFamily:"fonte1",
+    fontSize:18,
+    color:"#48392E",
   },
 });

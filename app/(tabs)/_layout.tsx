@@ -4,7 +4,7 @@ import React from 'react';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -14,6 +14,8 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
+        tabBarInactiveBackgroundColor: "#48392E",
+        tabBarActiveBackgroundColor: "#48392E",
       }}>
       <Tabs.Screen
         name="index"
@@ -29,7 +31,7 @@ export default function TabLayout() {
         options={{
           title: 'Perfil',
           tabBarIcon: ({ color, focused }) => (
-            <MaterialCommunityIcons name="face-woman-profile" size={24} color="white" />          ),
+            <AntDesign name="user" size={24} color={color} />          ),
         }}
       />
     </Tabs>

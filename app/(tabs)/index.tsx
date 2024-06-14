@@ -4,19 +4,25 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#F0F1F0', dark: '#F0F1F0' }}
       headerImage={
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
+          source={require('@/assets/images/inicio.png')}
           style={styles.reactLogo}
         />
       }>
+        <LinearGradient 
+        colors={['#F0F1F0','#AD795B']}
+        style={styles.background}
+        end={{x: 0.6 , y: 1.5}}
+        />
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Bem Vindo! </ThemedText>
+        <ThemedText type="title" style={styles.text}>Bem Vindo! </ThemedText>
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
@@ -55,16 +61,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    backgroundColor: "transparent",
+  },
+  text:{
+    color:"#764520",
   },
   stepContainer: {
     gap: 8,
     marginBottom: 8,
   },
   reactLogo: {
-    height: 178,
-    width: 290,
+    height:"100%",
+    width:"100%",
     bottom: 0,
     left: 0,
     position: 'absolute',
+  },
+  background:{
+    position:"absolute",
+    left:0,
+    right:0,
+    top:0,
+    height:600,
   },
 });
